@@ -1,0 +1,12 @@
+DTM Timing Tips
+
+After you have defined your Data Elements and Rules, the biggest challenge will be timing issues. If certain rules and variables load too early or late, they might not come together properly to create one new image request
+
+If the Adobe Analytics tool loads too early, the other elements might not have yet loaded to add their data to the image request. Set the Analytics tool to load at page bottom, if possible. This will make it easier for rules to run before the image request.
+
+In satellite debugger, "SATELLITE: Adobe Analytics: tracked page view" means that the image request was sent. If rules fire later, they will not be part of the image request.
+
+Tips for Timing:
+Adobe Analytics tool: load at page bottom
+Global Page Load rule: load at page top
+Other Page Load rules: load at DOM ready

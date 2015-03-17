@@ -1,0 +1,29 @@
+//code for s.products for all events before purchase event:
+var ProdID = _satellite.getVar('Product ID');
+s.products=";"+ProdID;
+
+//code for product for order confirmation page
+var ProdID = _satellite.getVar('Product ID');
+var ProdQty = _satellite.getVar('Product Quantity');
+var ProdPrice = _satellite.getVar('Product Price');
+var ProdShip = _satellite.getVar('Product Shipping Cost');
+var ProdTax = _satellite.getVar('Product Tax');
+s.products=";"+ProdID+";"+ProdQty+";"+ProdPrice+";"+ProdShip+"|"+ProdTax;
+
+//Handling an array of products:
+var prodArray = geoData.productInfo;
+var prodString = "";
+var i;
+for (i = 0; i < prodArray.length; i++)
+   {
+   var SKU = prodArray[i].SKU;
+   var quantity = prodArray[i].quantity;
+   var price = prodArray[i].price;
+   var shipPrice = prodArray[i].shipPrice;
+   var vat = prodArray[i].vat;
+   prodString  += ";"+SKU+";"+quantity+";"+price+";"+shipPrice+"|"+vat+";
+   //add a comma if another product follows
+   if (i < prodArray.length - 1) prodString += ",";
+   }  
+	 s.products = prodString;
+   _satellite.notify('string content: '+prodString,1)

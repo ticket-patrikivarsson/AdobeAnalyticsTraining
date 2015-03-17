@@ -1,0 +1,54 @@
+//The getQueryParam() utility function doesn't take a list of parameters like the old plug-in did: you must get each parameter individually
+// Loop through the url parameters from "n1" to "n9", save into an array
+var newsArray = [];
+var i;
+for (i = 1; i < 10; i++) {
+	if (s.Util.getQueryParam('n'+i)) {
+		newsArray.push(s.Util.getQueryParam('n'+i));
+	}
+}
+
+// Print out your JS objects and results into the _satellite debugger
+_satellite.notify('array length: '+newsArray.length,1)
+_satellite.notify('array content: '+newsArray,1)
+
+
+// Loop through array elements and put them into a string, concatenate with "|", except on last
+var newsString = "";
+var j;
+for (j = 0; j < newsArray.length; j++) {
+	if (newsArray[j]) {
+		newsString += newsArray[j];
+		if (j < newsArray.length - 1)
+			newsString += "|";
+		}
+}
+// Save results into list-prop11
+s.prop11 = newsString;
+_satellite.notify('string content: '+newsString,1)
+
+
+
+// This clunky code below would also work instead of above, but without using array or statements: this is easier to understand
+var n1 = s.Util.getQueryParam('n1');
+var n2 = s.Util.getQueryParam('n2');
+var n3 = s.Util.getQueryParam('n3');
+var n4 = s.Util.getQueryParam('n4');
+var n5 = s.Util.getQueryParam('n5');
+var n6 = s.Util.getQueryParam('n6');
+var n7 = s.Util.getQueryParam('n7');
+var n8 = s.Util.getQueryParam('n8');
+var n9 = s.Util.getQueryParam('n9');
+
+// Concatenate the values into a new cc variable, separated with pipes. Save results to list-prop11
+var cc = '';
+if (n1){cc = n1};
+if (n2){cc = cc + '|' + n2};
+if (n3){cc = cc + '|' + n3};
+if (n4){cc = cc + '|' + n4};
+if (n5){cc = cc + '|' + n5};
+if (n6){cc = cc + '|' + n6};
+if (n7){cc = cc + '|' + n7};
+if (n8){cc = cc + '|' + n8};
+if (n9){cc = cc + '|' + n9};
+s.prop11 = cc;
